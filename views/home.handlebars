@@ -1,0 +1,26 @@
+<!-- Yeah I basically stole this from the form thingy lmao -->
+<br>
+<div class="container">
+
+  <!-- The above form looks like this -->
+  <form action="/new" method="POST">
+    <div class="row">
+      <div class="six columns">
+        <label for="pasteTitle">Title</label>
+        <input class="u-full-width" type="text" placeholder="My Epic Paste" id="pasteTitle" name="pasteTitle">
+      </div>
+      <div class="six columns">
+        <label for="pasteExpire">Expiration</label>
+        <select class="u-full-width" id="pasteExpire" name="pasteExpire">
+          <option value="day">1 day</option>
+          <option value="week">1 week</option>
+          <option value="month">1 month</option>
+        </select>
+      </div>
+    </div>
+    <label for="pasteText">Paste</label>
+    <textarea class="u-full-width" id="pasteTest" name="pasteText"></textarea>
+    <input class="button-primary" type="submit" value="Submit">
+  </form>
+
+</div>

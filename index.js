@@ -3,23 +3,27 @@ const dotenv = require("dotenv")
 dotenv.config()
 
 const express = require("express")
-const mustache = require('mustache-express')
 const app = express()
 // Not using semi-colons feels kinda wrong but whatever
 
 // Express options
-app.set("views", `${__dirname}/views`)
-app.set("view engine", "mustache")
-app.engine("mustache", mustache())
+var exphbs = require('express-handlebars')
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
+//app.enable('view cache');
 
 // body-parser is depricated as of Express v4.16.0
-app.use(express.text())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.json()) // for parsing application/json
+app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
+var mainRoute = require("./routes/main")
 var rawRoute = require("./routes/raw")
 var newRoute = require("./routes/new")
+app.use("/", mainRoute)
 app.use("/raw", rawRoute)
 app.use("/new", newRoute)
+
+app.use("/static", express.static(__dirname + "/static"))
 
 app.listen(process.env.web_port, () => {
     console.log(`Listening on port: ${process.env.web_port}`)

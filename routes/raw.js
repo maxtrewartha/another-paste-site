@@ -31,7 +31,7 @@ router.get("/:id", async (req, res) => {
             res.send("Error: paste does not exist")
             return
         }
-        console.log(reply)
+        //console.log(reply)
         res.format({
             'text/plain': () => {
                 res.send(newesc(reply))

@@ -9,14 +9,16 @@ const router = require("express").Router()
 
 router.post("/", (req, res) => {
     var title = crypto.randomBytes(12).toString('base64');
-    var text = req.body
-    rClient.set(title, text, (err) => {
+    var text = req.body.pasteText
+    console.dir(req.body)
+    console.dir(req.body.pasteText)
+    /*rClient.set(title, text, (err) => {
         if (err != null) {
             res.send(err)
             return
         }
         res.send(title)
-    })
+    })*/
 
 })
 

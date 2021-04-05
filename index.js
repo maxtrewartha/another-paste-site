@@ -17,13 +17,18 @@ app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 var mainRoute = require("./routes/main")
+var getRoute = require("./routes/get")
 var rawRoute = require("./routes/raw")
 var newRoute = require("./routes/new")
 app.use("/", mainRoute)
+app.use("/get", getRoute)
 app.use("/raw", rawRoute)
 app.use("/new", newRoute)
-
 app.use("/static", express.static(__dirname + "/static"))
+
+app.get("*", (req, res) => {
+    res.render("404")
+})
 
 app.listen(process.env.web_port, () => {
     console.log(`Listening on port: ${process.env.web_port}`)

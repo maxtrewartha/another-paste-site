@@ -18,11 +18,11 @@
   },
   "homepage": "https://github.com/maxtrewartha/pastebin-clone#readme",
   "dependencies": {
+    "base-x": "^3.0.8",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.3.0",
     "nodemon": "^2.0.7",
-    "pug": "^3.0.2",
     "redis": "^3.1.0"
   }
 }

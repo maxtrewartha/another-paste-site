@@ -1,4 +1,5 @@
 const redis = require("redis")
+var crypto = require("crypto");
 const rClient = redis.createClient({
     host: process.env.redis_addr,
     port: process.env.redis_port,
@@ -7,7 +8,7 @@ const rClient = redis.createClient({
 const router = require("express").Router()
 
 router.post("/", (req, res) => {
-    var title = Math.random().toString(36).substring(7);
+    var title = crypto.randomBytes(12).toString('base64');
     var text = req.body
     rClient.set(title, text, (err) => {
         if (err != null) {

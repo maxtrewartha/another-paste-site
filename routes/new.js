@@ -10,22 +10,27 @@ const rClient = redis.createClient({
 const router = require("express").Router()
 
 router.post("/", (req, res) => {
+    var seconds = {
+        day: 86400,
+        week: 604800,
+        month: 2678400
+    }
     var title = bs62.encode(crypto.randomBytes(12))
+    date = Date.now()
     data = {
         title: req.body.pasteTitle,
         text: req.body.pasteText,
-        timer: req.body.pasteExpire,
-        date: new Date(Date.now()).toUTCString(),
+        expire: date + seconds[req.body.pasteExpire] * 1000,
+        date: date,
     }
     var text = JSON.stringify(data)
-    rClient.set(title, text, (err) => {
+    rClient.setex(title, seconds[req.body.pasteExpire], text, (err) => {
         if (err != null) {
             res.send(err)
             return
         }
         res.redirect(`/get/${title}`)
     })
-
 })
 
 module.exports = router

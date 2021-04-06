@@ -17,7 +17,7 @@ function newesc(s) {
     return s.replace(/[&"<>]/g, (c) => lookup[c]);
 }
 
-router.get('/', async (rew, res) => {
+router.get('/', async (req, res) => {
     res.redirect("/")
 })
 
@@ -28,12 +28,12 @@ router.get("/:id", async (req, res) => {
             return
         }
         if (reply == null) {
-            res.send("Error: paste does not exist")
+            res.render("404")
             return
         }
         data = JSON.parse(reply)
         var lines = data.text.trim().split(/(?:\r\n)+/);
-        res.render("paste", { title: data.title, text: lines, date: data.date })
+        res.render("paste", { title: data.title, text: lines, date: new Date(data.date).toUTCString(), expire: new Date(data.expire).toUTCString() })
     })
 })
 

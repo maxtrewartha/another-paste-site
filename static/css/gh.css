@@ -125,3 +125,11 @@ nav ul li.icon { display: none; }
 		float: none;
 	}
 }
+
+.footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	color: #383838;
+	/*text-align: center;*/
+  }

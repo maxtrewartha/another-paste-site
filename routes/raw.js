@@ -17,7 +17,7 @@ router.get("/:id", async (req, res) => {
             return
         }
         if (reply == null) {
-            res.send("Error: paste does not exist")
+            res.render("404")
             return
         }
         res.format({
